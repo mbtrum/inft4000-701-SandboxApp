@@ -10,20 +10,19 @@ public class MovieController {
     @GetMapping("/")
     public String GetAllMovies() {
         return "get all movies";
-        // get all movie records from database
     }
 
     // GET request - /movies/5
     @GetMapping("/{id}")
     public String GetMovieById(@PathVariable int id) {
         return "get movie by id: " + id;
-        // get movie in database with pk = id
     }
 
-    // POST request - /movies/add
-    @PostMapping("add")
-    public void AddNewMovie(){
+    // POST request - /movies
+    @PostMapping("/")
+    public String AddNewMovie(){
         // add new movie in database
+        return "Add new movie";
     }
 
 }
