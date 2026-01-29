@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+// Common bean validations: @NotNull, @NotEmpty, @NotBlank, @Size, @Min, @Max, @Email, and @Pattern
+
 @Data // Lombok will add the getter and setter methods
 public class MovieCreateDTO {
 
