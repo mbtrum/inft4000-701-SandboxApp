@@ -1,7 +1,9 @@
 package com.nscc.sandboxapp.controller;
 
+import com.nscc.sandboxapp.dto.MovieCreateDTO;
 import com.nscc.sandboxapp.entity.Movie;
 import com.nscc.sandboxapp.service.MovieService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -37,8 +39,12 @@ public class MovieController {
 
     // POST request - /movies
     @PostMapping("/")
-    public String AddNewMovie(){
-        // add new movie in database
-        return "Add new movie";
+    public Movie CreateMovie(@Valid @RequestBody MovieCreateDTO movieDTO){
+        // Use a DTO to receive the input through API and plug into a movie object.
+        Movie movie = new Movie();
+        movie.setTitle(movieDTO.getTitle());
+        movie.setSynopsis(movieDTO.getSynopsis());
+
+        return movieService.createMovie(movie);
     }
 }

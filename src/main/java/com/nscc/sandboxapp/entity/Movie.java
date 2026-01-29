@@ -1,6 +1,8 @@
 package com.nscc.sandboxapp.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data // Lombok will add the getter and setter methods
@@ -10,9 +12,9 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment the id in database
     private Long id;
 
-    @Column(nullable = false) // NOT NULL in database
+    @Column(nullable = false) // definition in the database
     private String title;
 
-    @Column(nullable = false, length = 1000) // NOT NULL in database, max characters 1000 characters (default is 255)
+    @Column(nullable = false, length = 1000) // definition in the database
     private String synopsis;
 }

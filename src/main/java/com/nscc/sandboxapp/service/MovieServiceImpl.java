@@ -30,6 +30,6 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie createMovie(Movie movie) {
-        return null;
+        return movieRepository.save(movie);
     }
 }
