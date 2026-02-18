@@ -1,5 +1,6 @@
 package com.nscc.sandboxapp.service;
 
+import com.nscc.sandboxapp.entity.CastMember;
 import com.nscc.sandboxapp.entity.Movie;
 
 import java.util.List;
@@ -13,4 +14,11 @@ public interface MovieService {
     Optional<Movie> getMovieById(Long id);
 
     Movie createMovie(Movie movie);
+
+
+
+    Optional<Movie> getMovieByIdWithCastMembers(Long id);
+
+    Movie addCastMemberToMovie(Long movieId, CastMember castMember);
+
 }

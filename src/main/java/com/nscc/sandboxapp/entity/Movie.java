@@ -1,9 +1,10 @@
 package com.nscc.sandboxapp.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data // Lombok will add the getter and setter methods
 @Entity // define as a database entity
@@ -17,4 +18,17 @@ public class Movie {
 
     @Column(nullable = false, length = 1000) // definition in the database
     private String synopsis;
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CastMember> castMembers = new ArrayList<>();
+
+    //
+    // Helper method to add a cast member
+    //
+
+    public void addCastMember(CastMember castMember) {
+        castMembers.add(castMember);
+        castMember.setMovie(this); // set this Movie instance in the castMember object
+    }
+
 }

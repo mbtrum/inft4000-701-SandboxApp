@@ -1,6 +1,8 @@
 package com.nscc.sandboxapp.controller;
 
+import com.nscc.sandboxapp.dto.CastMemberDTO;
 import com.nscc.sandboxapp.dto.MovieCreateDTO;
+import com.nscc.sandboxapp.entity.CastMember;
 import com.nscc.sandboxapp.entity.Movie;
 import com.nscc.sandboxapp.service.MovieService;
 import jakarta.validation.Valid;
@@ -46,5 +48,19 @@ public class MovieController {
         movie.setSynopsis(movieDTO.getSynopsis());
 
         return movieService.createMovie(movie);
+    }
+
+    // POST ../movies/addcastmember
+    @PostMapping("/addcastmember")
+    public void addCastMember(@RequestBody CastMemberDTO castMemberDTO) {
+        long movieId = castMemberDTO.getMovieId();
+
+        CastMember castMember = new CastMember();
+        castMember.setActorName(castMemberDTO.getActorName());
+        castMember.setCharacterName(castMemberDTO.getCharacterName());
+
+        movieService.addCastMemberToMovie(movieId, castMember);
+
+        // TO-DO: return MovieWithCastMembersDTO
     }
 }
