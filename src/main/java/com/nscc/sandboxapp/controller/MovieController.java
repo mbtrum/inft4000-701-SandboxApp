@@ -28,13 +28,23 @@ public class MovieController {
     // GET request - /movies
     @GetMapping("/")
     public List<Movie> GetAllMovies() {
-        return movieService.getAllMovies();
+        List<Movie> movies = movieService.getAllMovies();
+
+        // convert movies into DTO
+        // return DTO
+
+
+        return  movies;
     }
 
     // GET request - /movies/5
     @GetMapping("/{id}")
     public Movie GetMovieById(@PathVariable long id) {
         // Optional<Movie> allows us to throw an exception if not found
+
+        // convert movie into DTO
+        // return DTO
+
         return movieService.getMovieById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
@@ -52,15 +62,19 @@ public class MovieController {
 
     // POST ../movies/addcastmember
     @PostMapping("/addcastmember")
-    public void addCastMember(@RequestBody CastMemberDTO castMemberDTO) {
+    public Movie addCastMember(@RequestBody CastMemberDTO castMemberDTO) {
         long movieId = castMemberDTO.getMovieId();
 
         CastMember castMember = new CastMember();
         castMember.setActorName(castMemberDTO.getActorName());
         castMember.setCharacterName(castMemberDTO.getCharacterName());
 
-        movieService.addCastMemberToMovie(movieId, castMember);
+        Movie movie = movieService.addCastMemberToMovie(movieId, castMember);
 
-        // TO-DO: return MovieWithCastMembersDTO
+        // Convert Movie into MovieWithCastMembersDTO
+
+        // return DTO
+
+        return movie;
     }
 }
